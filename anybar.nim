@@ -16,6 +16,7 @@ type
 
 
 proc newAnybar*(port: Port = Port(1738), address: string = "localhost"): Anybar =
+  ## Create new client instance
   assert address != ""
   assert port != Port(0)
 
@@ -27,15 +28,19 @@ proc newAnybar*(port: Port = Port(1738), address: string = "localhost"): Anybar 
 
 
 proc change*(self: Anybar, color: string) =
+  ## Tell AnyBar to change the color of icon
   if not(color in colors):
     raise newException(ValueError, "Color is not valid.")
 
   discard self.socket.sendTo(self.address, self.port, color)
 
+proc quit*(self: Anybar) =
+  ## Tell AnyBar instance to quit
+  discard self.socket.sendTo(self.address, self.port, "quit")
 
 proc printUsage() =
   echo """Usage:
-  anybar [-h:host] [-p:port] color
+  anybar [-h:host] [-p:port] color|quit
 
 Options:
   --help          Show this screen.
@@ -81,4 +86,7 @@ when isMainModule:
     if host == "":
       host = "localhost"
 
-    newAnybar(tPort, host).change(color)
+    if color == "quit":
+      newAnybar(tPort, host).quit()
+    else:
+      newAnybar(tPort, host).change(color)
