@@ -5,7 +5,7 @@ import parseopt2
 from strutils import parseInt
 
 const
-  VERSION* = "0.0.1"
+  VERSION* = "0.0.2"
   colors = ["white", "red", "orange", "yellow", "green", "cyan", "blue", "purple", "black", "question", "exclamation"]
 
 type
