@@ -23,7 +23,7 @@ proc newAnybar*(port: Port = Port(1738), address: string = "localhost"): Anybar 
   new(result)
   result.address = address
   result.port = port
-  result.socket = newSocket(typ = rawsockets.SOCK_DGRAM, protocol = rawsockets.IPPROTO_UDP)
+  result.socket = newSocket(sockType = rawsockets.SOCK_DGRAM, protocol = rawsockets.IPPROTO_UDP)
 
 
 
