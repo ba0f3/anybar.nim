@@ -1,12 +1,15 @@
 # anybar.nim
-Nim client for Anybar
+
+Nim client for [Anybar](https://github.com/tonsky/AnyBar), an OS X menubar status indicator.
 
 ## Installation
+
 ```nimble install anybar```
 
 ## Usage
 
 ### Library
+
 ```
 import anybar
 
@@ -22,7 +25,8 @@ newAnybar(host="10.0.0.1").change('red')
 newAnybar().quit()
 ```
 
-### Command line:
+### Command line
+
     anybar red
     anybar -p:1739 yellow
     anybar -h:10.0.0.1 green
